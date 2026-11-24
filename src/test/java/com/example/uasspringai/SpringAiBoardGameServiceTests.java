@@ -1,5 +1,7 @@
 package com.example.uasspringai;
 
+import java.util.List;
+import org.springframework.ai.document.Document;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,24 +53,31 @@ public class SpringAiBoardGameServiceTests {
                 .isTrue();
     }
 
+  
     @Test
     public void evaluateFactualAccuracy() {
         var userText = "Why is the sky blue?";
         var question = new Question(userText);
         var answer = boardGameService.askQuestion(question);
 
+        var referenceDocs = List.of(new Document(
+                "The sky is blue because of Rayleigh scattering: molecules in "
+                + "the atmosphere scatter shorter blue wavelengths of sunlight "
+                + "more strongly than longer red wavelengths."));
+
         var evaluationRequest =
-                new EvaluationRequest(userText, answer.answer());
+                new EvaluationRequest(userText, referenceDocs, answer.answer());
         var response = factCheckingEvaluator.evaluate(evaluationRequest);
 
         Assertions.assertThat(response.isPass())
-                .withFailMessage("""
-                        ========================================
-                        The answer "%s"
-                        is not considered correct for the question
-                        "%s".
-                        ========================================
-                        """, answer.answer(), userText)
-                .isTrue();
+        	.withFailMessage("""
+                ========================================
+                The answer "%s"
+                is not considered correct for the question
+                "%s".
+                Feedback evaluator: "%s"
+                ========================================
+                """, answer.answer(), userText, response.getFeedback())
+        	.isTrue();
     }
 }

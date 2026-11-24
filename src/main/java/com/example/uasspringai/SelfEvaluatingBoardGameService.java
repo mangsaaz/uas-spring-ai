@@ -23,7 +23,7 @@ public class SelfEvaluatingBoardGameService implements BoardGameService {
 
     public SelfEvaluatingBoardGameService(ChatClient.Builder chatClientBuilder) {
         var chatOptions = ChatOptions.builder()
-                .model("gpt-4o-mini")
+                .model("gpt-6-luna")
                 .build();
         this.chatClient = chatClientBuilder
                 .defaultOptions(chatOptions)
