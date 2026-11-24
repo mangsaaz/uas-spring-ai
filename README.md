@@ -10,7 +10,7 @@ Proyek UAS berdasarkan buku "Spring AI in Action" (Craig Walls):
 
 ## Cara menjalankan
 1. Atur API key (PowerShell):
-   `$env:SPRING_AI_OPENAI_API_KEY="sk-nry-BazRptLf3Vz0BoJItsMovKojob0I53fZWR8S49Fb8HI"`
+   `$env:SPRING_AI_OPENAI_API_KEY="###APIKEY###"`
 2. Jalankan test: `.\gradlew test`
 3. Jalankan aplikasi: `.\gradlew bootRun`
 4. Kirim pertanyaan:
