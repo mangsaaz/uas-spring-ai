@@ -22,6 +22,7 @@ Proyek UAS berdasarkan buku "Spring AI in Action" (Craig Walls):
 
 ## Dokumentasi
 - Laporan, screenshot, dan diagram UML ada di folder `docs/`
+- untuk membuka filenya, download terlebih dahulu
 
 ## Pembuat
 Sandy Karunia Abadi, 12409011030076
